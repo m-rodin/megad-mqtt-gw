@@ -145,6 +145,10 @@ class Device(object):
                 if value == 'busy' or value == '':
                     return None
                 return json.dumps({v.split(':')[0]: float(v.split(':')[1]) for v in value.split(';')})
+            if port_dev == PortDSenDevice.OneW:
+                if value == 'busy' or value == '':
+                    return None
+                return json.dumps({ value.split(':')[0]: float(value.split(':')[1]) })
             self.platform.logger.warning(f'Unknown port mode/device: {port}. Value of type {type(value)} unparsed: {value}')
             return value
 

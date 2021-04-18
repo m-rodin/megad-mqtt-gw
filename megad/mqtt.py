@@ -32,7 +32,7 @@ class MQTTConnector(object):
 
         self.broker = config.get('address')
         self.port = int(config.get('port', '1883')) # 8883 for SSL
-        self.keepalive = bool(config.get('keepalive', 'true'))
+        self.keepalive = int(config.get('keepalive', MQTT_DEFAULT_KEEPALIVE))
         self.async_on_connect_cb = async_on_connect
         self.async_on_message_cb = async_on_message
         self._paho_lock = asyncio.Lock(loop=self.loop)
